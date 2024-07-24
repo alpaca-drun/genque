@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>테스트의 작업실</title>
+  
+</head>
+<body>
+  <header>
+    <h1>테스트의 작업실</h1>
+  </header>
+  <main>
+    <section class="progress-bar">
+      <h2>크레딧 사용량</h2>
+      <div class="bar">
+        <div class="progress" style="width: 50%"></div>
+      </div>
+      <div class="info">
+        <p>Free Plan 사용중입니다.</p>
+        <p>20240237</p>
+        <p>2023.12.15</p>
+      </div>
+    </section>
+    <section class="notice">
+      <h2>공지사항</h2>
+      <div class="notice-item">
+        <a href="#">젠큐 신규 서비스 오픈</a>
+        <a href="#">젠큐 이용법 알아보기</a>
+      </div>
+    </section>
+    <section class="recent-works">
+      <h2>최근 작업</h2>
+      
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 테스트의 작업실</p>
+  </footer>
+</body>
+</html>
+
+
+{% endblock %}

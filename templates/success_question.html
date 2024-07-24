@@ -1,0 +1,62 @@
+{% extends "question_side.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Input Example</title>
+</head>
+<body>
+    <h1>문제 생성 결과</h1>
+    <h2>{{ passage[0][1] }}</h2>
+    
+
+    <h2>지문</h2>
+    <p>다음 글을 읽고 물음에 답하시오</p>
+    <p>{{ passage[0][0] }}</p>
+    
+    <h3>구성</h3>
+    <p>{{ passage[0][4]}}</p>
+
+    <h3>분석</h3>
+    <p>글자 수</p>
+    <p>난이도</p>
+    <p>어려운 단어</p>
+
+    {% for que in question %}
+
+    
+    <h2>문제 {{ loop.index }}</h2>
+    <p>보기</p>
+    <p>{{que[4]}}</p>
+    <p>{{que[5]}}</p>
+    <p>{{que[6]}}</p>
+    <p>{{que[7]}}</p>
+    <p>{{que[8]}}</p>
+    
+    <p>정답</p>
+    <p>{{que[9]}}</p>
+    <p>해설</p>
+    <p>{{que[3]}}</p>
+    <p>예상 정답률</p>
+    <p>{{que[15]}}</p>
+
+    <p>선택지별 예상 채택률</p>
+    
+    <p>1번 {{que[10]}}</p>
+    <p>2번 {{que[11]}}</p>
+    <p>3번 {{que[12]}}</p>
+    <p>4번 {{que[13]}}</p>
+    <p>5번 {{que[14]}}</p>
+    
+
+    
+    {% endfor %}
+    
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>내 저장소</title>
+  
+</head>
+<body>
+  <header>
+    <h1>테스트의 저장소</h1>
+  </header>
+  <main>
+    
+    <h2>최근 작업</h2>
+    <h3>지문</h3>
+    <table style = "border-radius: 12px;">
+        <tr>
+            <td style = "width: 120px">제목</td>
+            <td style = "width: 100px">분야</td>
+            <td style = "width: 100px">카테고리</td>
+            <td style = "width: 100px">구성</td>
+            <td style = "width: 100px">소유자</td>
+            <td style = "width: 100px">최종작업일시</td>
+        </tr>
+        
+    </table>
+    <!-- {% for result in results %}
+    
+    <table>
+        <tr onclick="window.location='/question_content';">
+            <td style = "width: 120px">{{result}}</td>
+            <td style = "width: 100px">영어</td>
+            <td style = "width: 100px">객관식 문제</td>
+            <td style = "width: 100px">지문1 문제1</td>
+            <td style = "width: 100px">yuusaku</td>
+            <td style = "width: 100px">최종작업일시</td>
+        </tr>
+        
+    </table>
+    {% endfor %} -->
+    
+    
+    
+    
+    <table style = "border-radius: 12px;">
+        {% for row in results %}
+        <tr onclick="window.location='/question_content/{{row[0]}}' ;">
+            {% for cell in row %}
+            <td>{{ cell }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    </section>
+  </main>
+  
+</body>
+</html>
+
+{% endblock %}

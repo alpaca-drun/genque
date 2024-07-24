@@ -1,0 +1,225 @@
+{% extends "question_side.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Input Example</title>
+    <style>
+        /* 팝업 스타일 */
+        #popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+        }
+    
+        
+        #passage_popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        #passage_popup2 {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        /* 로딩 화면 스타일 */
+        #loading {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            padding-top: 200px;
+        }
+        /* 배경 */
+        #popupBackground {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 반투명한 검은색 배경 */
+            z-index: 9998; /* 팝업보다 한 단계 낮은 z-index */
+        }
+    </style>
+</head>
+<body>
+    <h1>문제 생성</h1>
+    <h2>지문 선택</h2>
+    <button id="passage_popupButton">지문 생성</button>
+    <div id="passage_popup">
+        <h1>텍스트 입력 예제</h1>
+    <form method="post" action="/create3">
+        <label for="text_input">텍스트를 입력하세요:</label>
+        <br>
+        <p>주제</p>
+        <input type="text" id="text_input" name="text_input">
+        <br>
+        <p>문단 1</p>
+        <input type="text" id="text_input" name="text_input2">
+        <br>
+        <input type="text" id="text_input" name="text_input2_1">
+        <br>
+        <input type="text" id="text_input" name="text_input2_2">
+        <br>
+        <p>문단 2</p>
+        <input type="text" id="text_input" name="text_input3">
+        <br>
+        <input type="text" id="text_input" name="text_input3_1">
+        <br>
+        <input type="text" id="text_input" name="text_input3_2">
+        <br>
+        <p>난이도</p>
+        <select id="action1" name="level">
+            <option value="중학교 1학년">중1</option>
+            <option value="중학교 2학년">중2</option>
+            <option value="중학교 3학년">중3</option>
+            <option value="고등학교 1학년">고1</option>
+            <option value="고등학교 2학년">고2</option>
+            <option value="고등학교 3학년">고3</option>
+        </select>
+        <!-- <button type="submit">전송</button> -->
+        <br>
+        <button onclick="getData()">지문 생성</button>
+        <div id="loading">로딩 중...</div>
+    </form>
+        <button id="passage_closePopup">닫기</button>
+    </div>
+
+
+
+    <!-- <button onclick="redirectToQuestionGen()">직접 입력</button> -->
+    <button onclick="window.location.href='/question_gen'">직접 입력</button>
+<!-- 
+    <script>
+        function redirectToQuestionGen() {
+            // passage 값을 가져옴 (여기서는 직접 지정했지만 실제로는 동적으로 값을 설정할 수 있음)
+            var passage = "test";
+            
+            // URL에 passage 값을 포함하여 페이지 이동
+            window.location.href = '/question_gen?passage=' + encodeURIComponent(passage);
+        }
+        </script> -->
+
+    <!-- /passage_gen 에서 GET 방식으로 받아옴  -->
+    <button id="passage_popupButton2">불러오기</button>
+    <div id="passage_popup2">
+        <h3>지문 불러오기</h3>
+        <p>기존 문제의 지문을 불러옵니다.</p>
+        <p>내 보관함</p>
+        <form method="post" action="/question_gen">
+            <table>
+                <th>지문을 선택하세요:</th>
+                <!-- passages 는 question의 results에서 받아옴 -->
+                {% for passage in passages %}
+                <tr>
+                    <td>
+                        <input type="radio" id="passage_{{ loop.index }}" name="action1" value="{{ passage[0] }}">
+                        <label for="passage_{{ loop.index }}" >{{ passage[1] }}</label>
+                        
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <button type="submit">불러오기</button>
+        </form>
+        <button id="passage_closePopup2">닫기</button>
+    </div>
+    <br>
+    
+    <div id="popupBackground"></div>
+    
+
+</body>
+</html>
+
+
+
+<script>
+    // var popup = document.getElementById('popup');
+    var popupBackground = document.getElementById('popupBackground');
+
+    
+
+    document.getElementById('passage_popupButton').addEventListener('click', function() {
+        document.getElementById('passage_popup').style.display = 'block';
+    });
+
+    document.getElementById('passage_closePopup').addEventListener('click', function() {
+        document.getElementById('passage_popup').style.display = 'none';
+    });
+
+    document.getElementById('passage_popupButton2').addEventListener('click', function() {
+        document.getElementById('passage_popup2').style.display = 'block';
+    });
+
+    document.getElementById('passage_closePopup2').addEventListener('click', function() {
+        document.getElementById('passage_popup2').style.display = 'none';
+    });
+
+    
+
+
+    function getData() {
+            // 로딩 화면 표시
+            document.getElementById('loading').style.display = 'block';
+
+            // API 요청 보내기 (이 부분은 실제로는 원하는 API 요청 코드로 대체해야 합니다)
+            setTimeout(function() {
+                // 여기에 API 요청 코드 작성
+                // 예시: fetch('http://example.com/api/data')
+                //     .then(response => response.json())
+                //     .then(data => {
+                //         // API 요청 완료 후 로딩 화면 숨기기
+                //         document.getElementById('loading').style.display = 'none';
+                //         // 받은 데이터를 처리하고 화면에 표시
+                //         console.log(data);
+                //     })
+                //     .catch(error => {
+                //         console.error('Error:', error);
+                //         // 에러 발생 시 로딩 화면 숨기기
+                //         document.getElementById('loading').style.display = 'none';
+                //     });
+                
+                // 여기에 실제 API 요청 코드를 넣어주세요.
+                
+                // 예시로 setTimeout을 사용하여 3초 후에 로딩 화면을 숨기는 코드를 넣었습니다.
+                setTimeout(function() {
+                    document.getElementById('loading').style.display = 'none';
+                }, 3000);
+            }, 1000); // 1초 후에 실행 (실제로는 API 요청이 완료될 때까지의 시간에 따라 조절해야 합니다)
+        }
+</script>
+
+
+
+{% endblock %}

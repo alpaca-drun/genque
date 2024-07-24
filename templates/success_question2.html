@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Input Example</title>
+</head>
+<body>
+    <h1>텍스트 입력 예제</h1>
+    
+    {% if passage %}
+    <h2>입력한 텍스트:</h2>
+    <p>{{ passage }}</p>
+    <p>{{ question }}</p>
+    {% endif %}
+</body>
+</html>
+
+{% endblock %}

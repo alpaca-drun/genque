@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <a href="/">테스트 작업 홈</a>
+       
+        <a href="/question_home">문제 제작 홈</a>
+        <a href="/save">내 보관함</a>
+    </div>
+    <div class="sidebar2">
+        
+        <a href="/question_home">문제 제작 홈</a>        
+        <h3>영어</h3>
+        <a href="/question">객관식 문제</a>
+
+        
+    </div>
+    <div class="sidebar2_content">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</body>
+</html>
+

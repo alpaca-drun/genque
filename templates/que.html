@@ -1,0 +1,55 @@
+<h1>문제 옵션 선택</h1>
+    <form method="post" action="/question">
+        <label for="action1">지문을 선택하세요:</label>
+        <select id="action1" name="action1">
+        
+            {% for passage in passages %}
+            <option value="{{passage[0]}}{{ passage[1] }}">{{ passage[1] }}</option>
+            {% endfor %}
+        
+            <!-- <option value="주제 찾기">1번</option>
+            <option value="주장 찾기">2번</option> -->
+        </select>
+
+        <label for="action2">문제 옵션을 선택하세요:</label>
+        <select id="action2" name="action2">
+            <option value="주제 찾기">주제 찾기</option>
+            <option value="주장 찾기">주장 찾기</option>
+        </select>
+        <button type="submit">전송</button>
+    </form>
+
+
+    <option value="{{passage[0]}}{{ passage }}">{{ passage[0] }}</option>
+
+
+    <button id="popupButton">문제 생성</button>
+
+    <div id="popup">
+        <h1>문제 옵션 선택</h1>
+        <form method="post" action="/question">
+            <label for="action1">지문을 선택하세요:</label>
+            <select id="action1" name="action1">
+                
+                {% for passage in passages %}
+                <option value="{{passage[0]}}{{ passage[2] }}">{{ passage[1] }}</option>
+                {% endfor %}
+            
+                <!-- <option value="주제 찾기">1번</option>
+                <option value="주장 찾기">2번</option> -->
+            </select>
+            
+            <br>
+            <label for="action2">문제 옵션을 선택하세요:</label>
+            <select id="action2" name="action2">
+                <option value="주제 찾기">주제 찾기</option>
+                <option value="주장 찾기">주장 찾기</option>
+            </select>
+            <br>
+        <button type="submit">전송</button> 
+        
+        </form>
+
+
+        <button id="closePopup">닫기</button>
+    </div>

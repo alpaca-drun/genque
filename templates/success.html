@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Input Example</title>
+    <style>
+        /* 팝업 스타일 */
+        #popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>텍스트 입력 예제</h1>
+    
+    {% if user_input %}
+    <h2>입력한 텍스트:</h2>
+    <p>{{ user_input }}</p>
+    {% endif %}
+
+    <p>지문 추가하기</p>
+
+
+    <button id="popupButton">문제 생성</button>
+
+    <div id="popup">
+        <h1>문제 옵션 선택</h1>
+        <form method="post" action="/question">
+            <label for="action1">지문을 선택하세요:</label>
+            <select id="action1" name="action1">
+            
+                {% for passage in passages %}
+                <option value="{{passage[0]}}{{ passage[2] }}">{{ passage[1] }}</option>
+                {% endfor %}
+            
+                <!-- <option value="주제 찾기">1번</option>
+                <option value="주장 찾기">2번</option> -->
+            </select>
+            <br>
+            <label for="action2">문제 옵션을 선택하세요:</label>
+            <select id="action2" name="action2">
+                <option value="주제 찾기">주제 찾기</option>
+                <option value="주장 찾기">주장 찾기</option>
+            </select>
+            <br>
+        <button type="submit">전송</button> 
+        
+        </form>
+
+
+        <button id="closePopup">닫기</button>
+    </div>
+
+</body>
+</html>
+
+<script>
+    document.getElementById('popupButton').addEventListener('click', function() {
+        document.getElementById('popup').style.display = 'block';
+    });
+
+    document.getElementById('closePopup').addEventListener('click', function() {
+        document.getElementById('popup').style.display = 'none';
+    });
+
+    document.getElementById('passage_popupButton').addEventListener('click', function() {
+        document.getElementById('passage_popup').style.display = 'block';
+    });
+
+    document.getElementById('passage_closePopup').addEventListener('click', function() {
+        document.getElementById('passage_popup').style.display = 'none';
+    });
+
+    document.getElementById('passage_popupButton2').addEventListener('click', function() {
+        document.getElementById('passage_popup2').style.display = 'block';
+    });
+
+    document.getElementById('passage_closePopup2').addEventListener('click', function() {
+        document.getElementById('passage_popup2').style.display = 'none';
+    });
+
+    document.getElementById('popupButton3').addEventListener('click', function() {
+        document.getElementById('popup3').style.display = 'block';
+    });
+
+    document.getElementById('closePopup3').addEventListener('click', function() {
+        document.getElementById('popup3').style.display = 'none';
+    });
+</script>
+
+
+{% endblock %}

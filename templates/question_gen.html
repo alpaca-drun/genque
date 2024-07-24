@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Input Example</title>
+    <style>
+        /* 팝업 스타일 */
+        #popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        #passage_popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        #passage_popup2 {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        
+    </style>
+</head>
+<body>
+    <h1>텍스트 입력 예제</h1>
+    
+    <!-- /question_gen 으로부터 passage를 전달받았다면 passage 화면에 띄움 -->
+    {% if passage %}
+    <h2>입력한 텍스트:</h2>
+    <p id="passage">{{ passage }}</p>
+    <button onclick="editPassage()">수정하기</button>
+    <!-- 수정 폼 -->
+    <div id="editForm" style="display: none; width: 1000px; height: 500px;">
+        <textarea type="text" id="passageID" style="display : none">{{ passageID }}</textarea>
+        
+        <textarea type="text" id="editedPassage" style="width: 100%; height: 100%; resize: none; font-size: 20px;  font-family: 'Times New Roman', serif;">{{ passage }}</textarea>
+        <br>
+        <button onclick="saveEditedPassage()">저장</button>
+    </div>
+    
+    
+    
+    <!-- passage를 /question_gen 으로부터 전달받지 못했다면 새롭게 작성하는 화면 띄움 -->
+    {% else %}
+    <p id="passage"></p>
+    
+    <button onclick="writePassage()">작성하기</button>
+    <!-- 수정 폼 -->
+    <div id="writeForm" style="display: none; width: 1000px; height: 500px;">
+        <textarea type="text" id="passageID" style="display : none">new_index</textarea>
+        <textarea type="text" id="title" style="width: 100%; height: 5%; resize: none; font-size: 20px;  font-family: 'Times New Roman', serif;">제목을 입력하세요</textarea>
+        
+        <textarea type="text" id="writePassage" style="width: 100%; height: 95%; resize: none; font-size: 20px;  font-family: 'Times New Roman', serif;">지문을 입력하세요</textarea>
+        <br>
+        <button onclick="saveWritePassage()">저장</button>
+    </div>
+    {% endif %}
+
+    <p id="displayPassage"></p>
+    
+    
+
+    <br>
+    <br>
+
+
+
+
+    <!-- 문제 생성하기 -->
+    <button id="popupButton">문제 생성</button>
+
+    <div id="popup">
+        <h1>문제 옵션 선택</h1>
+        <!-- /question 으로 action1, action2 값 post 형식으로 전달 -->
+        <!-- action1 = passageID -->
+        <!-- action2 = 문제 유형 -->
+        <form method="post" action="/question">
+            <select id="action1" name="action1">
+                {% if passageID %}
+                <option value="{{ passageID }}">{{ passageID }}</option>
+                
+                {% endif %}
+                
+                
+                <!-- <option value="주제 찾기">1번</option>
+                <option value="주장 찾기">2번</option> -->
+            </select>
+            
+            <label for="action2">문제 옵션을 선택하세요:</label>
+            <select id="action2" name="action2">
+                <option value="주제 찾기">주제 찾기</option>
+                <option value="주장 찾기">주장 찾기</option>
+                <option value="제목 찾기">제목 찾기</option>
+            </select>
+            <br>
+        <button type="submit">문제 생성</button> 
+        
+        </form>
+
+
+        <button id="closePopup">닫기</button>
+    </div>
+
+
+</body>
+</html>
+
+<script>
+    
+    document.getElementById('popupButton').addEventListener('click', function() {
+        document.getElementById('popup').style.display = 'block';
+    });
+
+    document.getElementById('closePopup').addEventListener('click', function() {
+        document.getElementById('popup').style.display = 'none';
+    });
+
+    document.getElementById('passage_popupButton').addEventListener('click', function() {
+        document.getElementById('passage_popup').style.display = 'block';
+    });
+
+    document.getElementById('passage_closePopup').addEventListener('click', function() {
+        document.getElementById('passage_popup').style.display = 'none';
+    });
+
+    document.getElementById('passage_popupButton2').addEventListener('click', function() {
+        document.getElementById('passage_popup2').style.display = 'block';
+    });
+
+    document.getElementById('passage_closePopup2').addEventListener('click', function() {
+        document.getElementById('passage_popup2').style.display = 'none';
+    });
+
+    document.getElementById('popupButton3').addEventListener('click', function() {
+        document.getElementById('popup3').style.display = 'block';
+    });
+
+    document.getElementById('closePopup3').addEventListener('click', function() {
+        document.getElementById('popup3').style.display = 'none';
+    });
+
+
+
+
+
+
+    function editPassage() {
+    // 편집 폼을 보여줌
+    document.getElementById('passage').style.display = 'none';
+    document.getElementById('editForm').style.display = 'block';
+    }
+
+    function saveEditedPassage() {
+        // 수정된 passage 값을 가져옴
+        var editedPassage = document.getElementById('editedPassage').value;
+        var passageID = document.getElementById('passageID').value;
+
+        // AJAX를 사용하여 서버에 수정된 passage 값을 전송
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/save_passage', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // 성공적으로 저장된 경우
+                    alert('텍스트가 성공적으로 저장되었습니다.');
+                    // 페이지 새로고침 없이 현재 HTML 업데이트
+                    document.getElementById('passage').innerText = editedPassage;
+                    // 편집 폼을 숨기고, 텍스트를 다시 보여줌
+                    document.getElementById('editForm').style.display = 'none';
+                    document.getElementById('passage').style.display = 'block';
+                    
+                } else {
+                    // 오류가 발생한 경우
+                    alert('오류가 발생했습니다.');
+                }
+            }
+        };
+        xhr.send(JSON.stringify({ passage: editedPassage, id: passageID }));
+        
+    }
+
+    function writePassage() {
+    // 편집 폼을 보여줌
+    document.getElementById('passage').style.display = 'none';
+    document.getElementById('writeForm').style.display = 'block';
+    }
+
+    function saveWritePassage() {
+        // 수정된 passage 값을 가져옴
+        var editedPassage = document.getElementById('writePassage').value;
+        var passageID = document.getElementById('passageID').value;
+        var title = document.getElementById('title').value;
+
+        // AJAX를 사용하여 서버에 수정된 passage 값을 전송
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/save_passage', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // 성공적으로 저장된 경우
+                    alert('텍스트가 성공적으로 저장되었습니다.');
+                    // 응답에서 새로운 HTML을 받음
+                    var response = JSON.parse(xhr.responseText);
+                    var updatedHTML = response.html;
+
+                    // 현재 페이지의 내용을 업데이트
+                    document.documentElement.innerHTML = updatedHTML;
+                } else {
+                    // 오류가 발생한 경우
+                    alert('오류가 발생했습니다.');
+                }
+            }
+        };
+        xhr.send(JSON.stringify({ passage: editedPassage, id: passageID, title: title }));
+        
+    }
+
+
+
+    function getQueryParam(param) {
+            var urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        window.onload = function() {
+            var passage = getQueryParam('passage');
+            if (passage) {
+                document.getElementById('displayPassage').innerText = decodeURIComponent(passage);
+            }
+        }
+</script>
+
+{% endblock %}

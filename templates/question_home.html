@@ -1,0 +1,84 @@
+{% extends "question_side.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <style>
+        /* 팝업 스타일 */
+        #popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>    
+    <div>
+    </div>
+    <div>
+        <h2>문제 제작 홈</h2>
+        
+        <h4>새로운 문제</h4>
+
+        <a href="/passage_gen">지문 생성</a>
+
+        <h4>최근 작업</h4>
+        <table style = "border-radius: 12px;">
+            <tr>
+                <td style = "width: 120px">제목</td>
+                <td style = "width: 100px">분야</td>
+                <td style = "width: 100px">카테고리</td>
+                <td style = "width: 100px">구성</td>
+                <td style = "width: 100px">소유자</td>
+                <td style = "width: 100px">최종작업일시</td>
+            </tr>
+            
+        </table>
+        <!-- <table>
+            <tr onclick="window.location='/question_content';">
+                <td>Page 1</td>
+                <td>Description of Page 1</td>
+            </tr>
+            <tr onclick="window.location='/question_content';">
+                <td>Page 2</td>
+                <td>Description of Page 2</td>
+            </tr>
+            <tr onclick="window.location='/question_content';">
+                <td>Page 3</td>
+                <td>Description of Page 3</td>
+            </tr>
+        </table> -->
+
+        <table style = "border-radius: 12px;">
+            {% for row in results %}
+            <tr onclick="window.location='/question_content/{{row[0]}}' ;">
+                {% for cell in row %}
+                <td>{{ cell }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</body>
+
+
+<script>
+    document.getElementById('popupButton').addEventListener('click', function() {
+        document.getElementById('popup').style.display = 'block';
+    });
+
+    document.getElementById('closePopup').addEventListener('click', function() {
+        document.getElementById('popup').style.display = 'none';
+    });
+</script>
+
+
+{% endblock %}
