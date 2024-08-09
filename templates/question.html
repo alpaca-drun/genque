@@ -254,7 +254,7 @@
                                     </div>
                                 </button>
                                 <div class="structure-btn">
-                                    <button type="button" onclick="moveUp()">위로</button>
+                                    <button type="button" onclick="moveUp(num)">위로</button>
                                     <button type="button" onclick="moveDown()">아래</button>
                                     <button type="button" onclick="addContent()">추가</button>
                                     <button type="button" onclick="deleteContent()">삭제</button>
@@ -516,14 +516,10 @@
         }, 1000); // 1초 후에 실행 (실제로는 API 요청이 완료될 때까지의 시간에 따라 조절해야 합니다)
     }
 
-    function moveUp() {
+    function moveUp(num) {
         console.log("위로 이동");
-        let check = document.getElementsByClassName("sc");
-        for(let i=0; i<check.length; i++) {
-            if(check[i].checked) {
-                console.log(check[i]);
-            }
-        }
+        let buttonNum = document.getElementById("structure-btn1-1");
+        
     }
 
     function moveDown() {
