@@ -237,7 +237,7 @@
                                         <input type="text" placeholder="구조 제목">
                                     </div>
                                 </div>
-                                <button type="button" style="padding: 5px; border: 0;">
+                                <button type="button" id="structure-btn1-1" class="structure-btn1" style="padding: 5px;">
                                     <div class="structure-content">
                                         <div>-></div>
                                         <div>
@@ -245,11 +245,19 @@
                                         </div>
                                     </div>
                                 </button>
-                                <div class="structure-content">
-                                    <div>-></div>
-                                    <div>
-                                        <input type="text" placeholder="구조 내용2">
+                                <button type="button" id="structure-btn1-2" class="structure-btn1" style="padding: 5px;">
+                                    <div class="structure-content">
+                                        <div>-></div>
+                                        <div>
+                                            <input type="text" placeholder="구조 내용2">
+                                        </div>
                                     </div>
+                                </button>
+                                <div class="structure-btn">
+                                    <button type="button" onclick="moveUp()">위로</button>
+                                    <button type="button" onclick="moveDown()">아래</button>
+                                    <button type="button" onclick="addContent()">추가</button>
+                                    <button type="button" onclick="deleteContent()">삭제</button>
                                 </div>
                             </div>
                             <div class="structure-text">

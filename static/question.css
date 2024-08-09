@@ -346,3 +346,10 @@
     justify-content: flex-end;
     gap: 10px;
 }
+
+/* 구조도 내용 버튼 focus */
+.structure-btn1:focus {
+    background-color: red;
+}
+
+
