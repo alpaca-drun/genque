@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
+     <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles2.css') }}"> -->
+     <link rel="stylesheet" href="{{ url_for('static', filename='global.css') }}">
 </head>
 <body>
-    <div class="sidebar">
-        <a href="/">테스트 작업 홈</a>
-        <a href="/question_home">문제 제작 홈</a>
-        <a href="/save">내 보관함</a>
-    </div>
-    <div class="content">
-        {% block content %}
-        <h1>Welcome to the Home Page</h1>
-        <p>Select a page from the sidebar to navigate.</p>
+    <div class="container">
+        <div class="sidebar" style="background-color: #126e7e;">
+            <div>로고</div>
+            <div>
+                <a href="/">테스트 작업 홈</a>
+                <a href="/question_home">문제 제작 홈</a>
+                <a href="/save">내 보관함</a>
+            </div>
+        </div>
+
+        {% block sidebar2 %}
         {% endblock %}
+        
+        <div class="content">
+            {% block content %}
+            <h1>Welcome to the Home Page</h1>
+            <p>Select a page from the sidebar to navigate.</p>
+            {% endblock %}
+        </div>
     </div>
 </body>
 </html>

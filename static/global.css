@@ -1,0 +1,142 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+/* 전체 틀 */
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+/* 전체 사이드바 */
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+    
+}
+.sidebar a, .sidebar2 a {
+    width: 100%;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    box-sizing: border-box;
+}
+.sidebar a:hover, .sidebar2 a:hover {
+    background-color: #575757;
+}
+
+/* 사이드바2 */
+.sidebar2 {
+    width: 200px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+    
+}
+.sidebar2 span {
+    padding: 10px 15px;
+}
+
+/* 내용 공통*/
+.content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* 내용 - 제목 */
+.content .title {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 32px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    box-shadow: rgba(16, 24, 40, 0.06) 0px 2px 4px -2px, rgba(16, 24, 40, 0.1) 0px 4px 8px -2px
+}
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* 내용 - 메인 */
+.mid-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px 10px;
+    gap: 24px;
+}
+
+/* 내용 - 최근 작업 */
+.recent-works {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.sub-title {
+    font-size: 1.25rem;
+    line-height: 2.5rem;
+    font-weight: 600;
+}
+/* 최근 작업 - 테이블 */
+.works-table {
+    border: 1px solid black;
+    border-radius: 12px;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 11px;
+    overflow: hidden;
+}
+.table-head {
+    border-bottom: 1px solid black;
+    background-color: rgb(249, 250, 251);
+    border-collapse: collapse;
+}
+.table-th {
+    padding: 12px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-align: left;
+    border-collapse: collapse;
+    font-weight: 400;
+}
+.table-comment {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 48px 32px;
+}
+.no-works {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.no-file {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+}
+.no-works-comment {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+}

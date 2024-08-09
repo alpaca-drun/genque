@@ -5,44 +5,115 @@
 
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>테스트의 작업실</title>
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테스트의 작업실</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
+
 <body>
-  <header>
-    <h1>테스트의 작업실</h1>
-  </header>
-  <main>
-    <section class="progress-bar">
-      <h2>크레딧 사용량</h2>
-      <div class="bar">
-        <div class="progress" style="width: 50%"></div>
-      </div>
-      <div class="info">
-        <p>Free Plan 사용중입니다.</p>
-        <p>20240237</p>
-        <p>2023.12.15</p>
-      </div>
-    </section>
-    <section class="notice">
-      <h2>공지사항</h2>
-      <div class="notice-item">
-        <a href="#">젠큐 신규 서비스 오픈</a>
-        <a href="#">젠큐 이용법 알아보기</a>
-      </div>
-    </section>
-    <section class="recent-works">
-      <h2>최근 작업</h2>
-      
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2024 테스트의 작업실</p>
-  </footer>
+    <div class="main">
+        <div class="title">
+            <div class="title-content">테스트의 작업실</div>
+        </div>
+        <div class="mid-content">
+            <div class="progress-bar">
+                <div class="credit">
+                    <div class="credit-1">
+                        <span style="color: rgb(255, 255, 255);">크레딧 사용량</span>
+                        <span style="color: rgb(165, 240, 252)">Free Plan 사용중입니다.</span>
+                    </div>
+                    
+                    <!-- 사용량 표시 -->
+                    <div class="credit-2">
+                        <span>O</span>
+                        <div class="credit-progress">
+                            <div class="progress" style="width: 50%;"></div>
+                        </div>
+                        <span>0</span>
+                    </div>
+
+                    <div class="credit-3">
+                        <button class="history">사용 내역</button>
+                        <button class="purchase">크레딧 구매</button>
+                    </div>
+                </div>
+                <div class="notice">
+                    <div class="notice-1" style="color: rgb(247, 144, 9);">
+                        <span>공지사항</span>
+                        <span>2024.08.05</span>
+                    </div>
+                    <div class="notice-2">
+                        <div>
+                            <a href="#" style="font-size: 1.25rem; color: rgb(147, 55, 13);">업데이트 : 업데이트 내용</a>
+                        </div>
+                    </div>
+                    <div class="notice-3">
+                        <a href="#">젠큐 신규 서비스 오픈</a>
+                        <a href="#">젠큐 이용법 알아보기</a>
+                    </div>
+                </div>
+                <div class="tutorial">
+                    <div class="tutorial-1" style="color: rgb(14, 147, 132);">
+                        <span>튜토리얼</span>
+                        <span>2024.08.05</span>
+                    </div>
+                    <div class="tutorial-2">
+                        <div>
+                            <a href="#" style="font-size: 1.25rem; color: rgb(18, 93, 86);">젠큐 이용법 알아보기</a>
+                        </div>
+                    </div>
+                    <div class="tutorial-3">
+                        <a href="#">튜토리얼 확인</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recent-works">
+                <span class="sub-title">최근 작업</span>
+                <div class="works-table">
+                    <table class="table">
+                        <thead class="table-head">
+                            <tr>
+                                <th class="table-th" style="width: 50px;"></th>
+                                <th class="table-th">이름</th>
+                                <th class="table-th" style="width: 80px;">분야</th>
+                                <th class="table-th" style="width: 100px;">카테고리</th>
+                                <th class="table-th" style="width: 140px;">구성</th>
+                                <th class="table-th" style="width: 160px;">소유자</th>
+                                <th class="table-th" style="width: 160px;">최종 작업일시</th>
+                                <th class="table-th" style="width: 50px;"></th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <!-- 데이터 없을 때 -->
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;" colspan="100%">
+                                    <div class="table-comment">
+                                        <div>아이콘</div>
+                                        <div class="no-works">
+                                            <span class="no-file">파일이 없습니다.</span>
+                                            <span class="no-works-comment">새로운 문제와 문서를 작업해 보세요!</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- 데이터 있을 때 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2024 테스트의 작업실</p>
+        </footer>
+    </div>
 </body>
+
 </html>
 
 

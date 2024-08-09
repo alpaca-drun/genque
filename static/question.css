@@ -1,0 +1,348 @@
+.title-content1 {
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+.input-title {
+    width: 100%;
+    border: 0;
+    outline: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(16, 24, 40);
+}
+
+/* 내용 - 지문 생성 */
+.text {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    padding: 32px 0px 48px;
+}
+.text-left {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    flex: 1 1 0%;
+}
+.text-create {
+    display: flex;
+    padding: 0 32px;
+}
+.text-1 {
+    display: flex;
+    flex-direction: column;
+    width: 76px;
+    padding: 6px 0 0;
+}
+.text-1 span {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(8, 138, 178);
+}
+.text-2 {
+    display: flex;
+    flex: 1 1 0%;
+}
+.line {
+    display: flex;
+    flex-direction: column;
+}
+.text-2 button {
+    background: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    cursor: pointer;
+}
+.line div {
+    width: 2px;
+    height: 100%;
+    background-color: rgb(8, 138, 178);
+    margin: 0 21px;
+    border-radius: 9999px;
+}
+
+/* 지문or문제 생성 버튼 */
+.text-create-btn {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: fit-content;
+    flex: 1 1 0%;
+}
+.text-create-btn > span {
+    padding: 8px 0;
+    font-weight: 500;
+    color: rgb(152, 162, 179);
+}
+.btns {
+    display: flex;
+    gap: 14px;
+    flex: 1 1 0%;
+}
+.text-btn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    padding: 16px;
+    border-radius: 8px;
+}
+.text-btn > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.btn-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgb(14, 112, 144);
+}
+.btn-content {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgb(6, 174, 212);
+}
+
+/* 문제 추가 버튼 */
+.text-add {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    font-weight: 600;
+    background-color: rgb(236, 253, 255);
+    border: 1px solid rgb(165, 240, 252);
+    border-radius: 8px;
+    color: rgb(14, 112, 144);
+    padding: 11px 20px;
+    width: fit-content;
+    cursor: pointer;
+}
+.add-btn-1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 지문 생성 팝업 */
+#passage_popup, #passage_popup2 {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    overflow: auto;
+}
+/* 배경 */
+#popupBackground {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 반투명한 검은색 배경 */
+    z-index: 9998;
+    /* 팝업보다 한 단계 낮은 z-index */
+}
+
+/* 팝업 제목 */
+.popup-title {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 30px 30px 10px;
+}
+.popup-top, .popup-bot {
+    display: flex;
+    justify-content: space-between;
+}
+.popup-bot > span {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.subject-type {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.subject {
+    padding: 1px 7px;
+    border: 1px solid rgb(249, 219, 175);
+    background-color: rgb(254, 246, 238);
+    color: rgb(185, 56, 21);
+    border-radius: 10px;
+    font-size: 0.75rem;
+}
+.type {
+    padding: 1px 7px;
+    border: 1px solid rgb(234, 236, 240);
+    background-color: rgb(249, 250, 251);
+    color: rgb(52, 64, 84);
+    border-radius: 10px;
+    font-size: 0.75rem;
+}
+
+/* 팝업 내용 - 지문 선택 */
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.content-top {
+    display: flex;
+    border-radius: 10px;
+    border: 1px solid rgb(208, 213, 221);
+    overflow: hidden;
+    margin: 0 30px;
+}
+.passage1, .passage2 {
+    padding: 10px 16px;
+    flex: 1 1 0%;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgb(29, 41, 57);
+}
+.active {
+    background-color: rgb(236, 253, 255);
+}
+
+/* 팝업 내용 - 주제 입력  */
+.content-mid {
+    /* display: flex;
+    flex-direction: column;
+    gap: 20px; */
+    position: relative;
+    padding: 20px 30px;
+    flex: 1 1 0%;
+}
+.mid-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.title-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.topic {
+    font-weight: 600;
+    color: rgb(52, 64, 84);
+}
+.notice {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgb(52, 64, 84);
+}
+.title-text {
+    padding: 12px 14px;
+    border: 1px solid rgb(208, 213, 221);
+    border-radius: 8px;
+    box-shadow: rgba(16, 24, 40, 0.05) 0px 1px 2px 0px;
+    font-weight: 400;
+    transition-property: border-color, box-shadow;
+    transition-duration: 0.2s;
+}
+.title-detail textarea {
+    width: 100%;
+    color: rgb(16, 24, 40);
+    background: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    resize: none;
+}
+.level-text {
+    padding: 12px 14px;
+}
+.level-range {
+    width: 100%;
+}
+
+/* 팝업 - 하단 */
+.content-bot {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding: 32px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(16, 24, 40, 0.06) 0px -1px 2px 0px, rgba(16, 24, 40, 0.1) 0px -1px 3px 0px;
+    border-radius: 12px;
+    background-color: #ccc;
+}
+.create-btn {
+    background-color: aliceblue;
+    padding: 10px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* 팝업 - 구조도 */
+.structure-list {
+    display: flex;
+    /* gap: 20px; */
+    padding: 10px;
+    margin: 0;
+    list-style: none;
+}
+.structure1, .structure2 {
+    border: 0;
+    padding: 10px;
+    border-radius: 10px;
+}
+.structure-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.structure-text {
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+    border: 0.5px solid #ccc;
+    border-radius: 10px;
+    /* padding: 10px; */
+}
+.structure-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+.structure-content input[type="text"] {
+    border: 0.5px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    width: 250px;
+}
+.structure-btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}

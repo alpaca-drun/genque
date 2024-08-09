@@ -3,7 +3,9 @@
 {% block content %}
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='create.css') }}">
     <style>
         /* 팝업 스타일 */
         #popup {
@@ -19,29 +21,56 @@
         }
     </style>
 </head>
-<body>    
-    <div>
-    </div>
-    <div>
-        <h2>문제 제작 홈</h2>
-        
-        <h4>새로운 문제</h4>
 
-        <a href="/passage_gen">지문 생성</a>
+<body>
+    <div class="content">
+        <div class="title">
+            <div class="title-content">문제 제작 홈</div>
+            <div class="title-sub">새로운 문제를 생성하거나 기존 작업을 불러올 수 있습니다.</div>
+        </div>
+        <div class="mid-content">
+            <div class="mid-title">
+                <span>새로운 문제</span>
+                <div class="create-P">
+                    <a href="/question" class="create-P1">
+                        <div class="subject1">
+                            <div class="subject2">
+                                <span class="subject3">국어</span>
+                            </div>
+                        </div>
+                        <span>아이콘</span>
+                        <div class="create-P2">
+                            <span style="color:#B93815">객관식 문제</span>
+                            <span style="color:#EF6820">수능 유형의 객관식 문제</span>
+                        </div>
+                    </a>
+                    <a href="/question" class="create-P1">
+                        <div class="subject1">
+                            <div class="subject2">
+                                <span class="subject3">국어</span>
+                            </div>
+                        </div>
+                        <span>아이콘</span>
+                        <div class="create-P2">
+                            <span style="color: #0E7090">객관식 문제</span>
+                            <span style="color: #06AED4">수능 유형의 객관식 문제</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
-        <h4>최근 작업</h4>
-        <table style = "border-radius: 12px;">
-            <tr>
-                <td style = "width: 120px">제목</td>
-                <td style = "width: 100px">분야</td>
-                <td style = "width: 100px">카테고리</td>
-                <td style = "width: 100px">구성</td>
-                <td style = "width: 100px">소유자</td>
-                <td style = "width: 100px">최종작업일시</td>
-            </tr>
-            
-        </table>
-        <!-- <table>
+            <!-- <h4>최근 작업</h4>
+            <table style="border-radius: 12px;">
+                <tr>
+                    <td style="width: 120px">제목</td>
+                    <td style="width: 100px">분야</td>
+                    <td style="width: 100px">카테고리</td>
+                    <td style="width: 100px">구성</td>
+                    <td style="width: 100px">소유자</td>
+                    <td style="width: 100px">최종작업일시</td>
+                </tr>
+            </table> -->
+            <!-- <table>
             <tr onclick="window.location='/question_content';">
                 <td>Page 1</td>
                 <td>Description of Page 1</td>
@@ -56,26 +85,63 @@
             </tr>
         </table> -->
 
-        <table style = "border-radius: 12px;">
-            {% for row in results %}
-            <tr onclick="window.location='/question_content/{{row[0]}}' ;">
-                {% for cell in row %}
-                <td>{{ cell }}</td>
+            <!-- <table style="border-radius: 12px;">
+                {% for row in results %}
+                <tr onclick="window.location='/question_content/{{row[0]}}' ;">
+                    {% for cell in row %}
+                    <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
                 {% endfor %}
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
+            </table> -->
 
+            <div class="recent-works">
+                <span class="sub-title">최근 작업</span>
+                <div class="works-table">
+                    <table class="table">
+                        <thead class="table-head">
+                            <tr>
+                                <th class="table-th" style="width: 50px;"></th>
+                                <th class="table-th">이름</th>
+                                <th class="table-th" style="width: 80px;">분야</th>
+                                <th class="table-th" style="width: 100px;">카테고리</th>
+                                <th class="table-th" style="width: 140px;">구성</th>
+                                <th class="table-th" style="width: 160px;">소유자</th>
+                                <th class="table-th" style="width: 160px;">최종 작업일시</th>
+                                <th class="table-th" style="width: 50px;"></th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <!-- 데이터 없을 때 -->
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;" colspan="100%">
+                                    <div class="table-comment">
+                                        <div>아이콘</div>
+                                        <div class="no-works">
+                                            <span class="no-file">파일이 없습니다.</span>
+                                            <span class="no-works-comment">새로운 문제와 문서를 작업해 보세요!</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- 데이터 있을 때 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 
 <script>
-    document.getElementById('popupButton').addEventListener('click', function() {
+    document.getElementById('popupButton').addEventListener('click', function () {
         document.getElementById('popup').style.display = 'block';
     });
 
-    document.getElementById('closePopup').addEventListener('click', function() {
+    document.getElementById('closePopup').addEventListener('click', function () {
         document.getElementById('popup').style.display = 'none';
     });
 </script>

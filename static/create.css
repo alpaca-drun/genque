@@ -1,0 +1,55 @@
+/* 내용 - 소제목 */
+.title-sub {
+    font-size: 0.875rem;
+}
+
+/* 내용 - 새로운 문제 */
+.mid-title {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.mid-title a  {
+    text-decoration: none;
+}
+.mid-title span {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.mid-title > span {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* 새로운 문제 - 상세*/
+.create-P {
+    display: flex;
+    gap: 12px;
+}
+.create-P1 {
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.create-P1 > span {
+    text-align: center;
+}
+.subject1 {
+    display: flex;
+    width: 100%;
+}
+.subject2 {
+    padding: 1px 7px;
+    border: 1px solid rgb(249, 219, 175);
+    background-color: rgb(254, 246, 238);
+    color: rgb(185, 56, 21);
+    border-radius: 10px;
+    font-size: 0.75rem;
+}
+.create-P2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
